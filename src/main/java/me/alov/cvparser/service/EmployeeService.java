@@ -13,6 +13,7 @@ import me.alov.cvparser.storage.Storage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
 
 public class EmployeeService {
 
@@ -23,7 +24,7 @@ public class EmployeeService {
         employeeStorage = new EmployeeStorage();
     }
 
-    public void createEmployee(File file) {
+    public void createEmployee(File file) throws IOException {
         //парсим
         FileDataExtractor extractor = this.obtainExtractor(file);
         String text = extractor.extract(file);
@@ -32,6 +33,7 @@ public class EmployeeService {
 
         employeeStorage.save(employee);
     }
+
 
     private FileDataExtractor obtainExtractor(File file) {
         String fileName = file.getName();
